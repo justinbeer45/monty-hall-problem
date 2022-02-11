@@ -1,4 +1,6 @@
+package Monty_Hall_Problem;
 import java.util.*;
+
 
 
 public class MontyHall {
@@ -9,7 +11,12 @@ public class MontyHall {
         System.out.println("Hello player!");
         System.out.println();
 
-        // Create a list with door numbers
+        // instantiate player and door
+        Player player = new Player();
+        Doors doors = new Doors();
+
+
+        // Add door numbers
         List<Integer> doors = new ArrayList<>();
         doors.add(1);
         doors.add(2);
@@ -56,7 +63,7 @@ public class MontyHall {
         {
             doors.remove(firstDoorChoice - 1);
             /*
-            System.out.println("Doors with car door removed " + doors);
+            System.out.println("Monty_Hall_Problem.Doors with car door removed " + doors);
             */
             // randomly decide which goat door to open
             // (int)(Math.random() * (max - min + 1) + min)
