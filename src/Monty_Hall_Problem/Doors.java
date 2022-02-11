@@ -1,9 +1,15 @@
-import java.util.*;
+package Monty_Hall_Problem;
+
 
 public class Doors {
     // set door variables
     private int carDoor;
     private int openDoor;
+
+    // constructor
+    Doors()
+    {
+    }
 
     // getter methods
     public int getCarDoor()
