@@ -16,29 +16,10 @@ public class MontyHall {
         Doors doors = new Doors();
 
 
-        // Add door numbers
-        List<Integer> doors = new ArrayList<>();
-        doors.add(1);
-        doors.add(2);
-        doors.add(3);
-        // Make sure array is set up correctly
-        /*
-        for (int i = 0; i < 3; i++)
-        {
-            System.out.println("List element " + i + " is door: " + doors.get(i));
-        }
-        System.out.println();
-        */
-
         // Choose which door the car will be behind
-        // Use (int)(Math.random() * (max - min + 1) + min) to generate a random integer between a minimum and maximum value
-        int carDoor = (int)(Math.random() * (3 - 1 + 1) + 1);
+        doors.setCarDoor(doors.decideCarDoor());
+        System.out.println("The car is behind door: " + doors.getCarDoor());
 
-        // output carDoor for testing purposes
-        /*
-        System.out.println("The car is behind door: " + carDoor);
-        System.out.println();
-        */
 
         // Explain the game to the user
         System.out.println("Behind one of the three doors you see in front of you is your dream car.");
@@ -48,47 +29,50 @@ public class MontyHall {
         // Ask the user for their door choice
         System.out.print("Please choose a door (1-3): ");
         Scanner firstChoiceInput = new Scanner(System.in);
-        int firstDoorChoice = firstChoiceInput.nextInt();
+        player.setDoorChoice(firstChoiceInput.nextInt());
         System.out.println();
 
         // Output user choice
-        System.out.println("You chose door: " + firstDoorChoice);
+        System.out.println("You chose door: " + player.getDoorChoice());
         System.out.println();
 
-        // If the car door is chosen, open one of the other two doors
-        int randomDoorIndex;
-        int firstRevealedDoor;
-        int unchosenGoatDoor = 0;
-        if (firstDoorChoice == carDoor)
-        {
-            doors.remove(firstDoorChoice - 1);
-            /*
-            System.out.println("Monty_Hall_Problem.Doors with car door removed " + doors);
-            */
-            // randomly decide which goat door to open
-            // (int)(Math.random() * (max - min + 1) + min)
-            randomDoorIndex = (int)(Math.random() * (1 + 1));
-            firstRevealedDoor = doors.get(randomDoorIndex);
-            // add firstDoorChoice back to list of doors
-            doors.add(firstDoorChoice);
-            /*
-            System.out.println("List of doors after first choice " + doors);
-            System.out.println();
-            */
+        // decide which of the two non-chosen doors to open
+        System.out.println("The host opens door " + doors.decideOpenDoor(player.getDoorChoice()) + " to reveal a goat!");
 
+        // Ask player if they would like to change their choice of door
+        System.out.println();
+        System.out.println("Would you like to change your door guess?");
+        System.out.println("No = 0");
+        System.out.println("Yes = 1");
+        System.out.print("Your choice: ");
+        Scanner doorChangeInput = new Scanner(System.in);
+        player.setChangeDoorChoice(player.decideDoorChange(doorChangeInput.nextInt()));
+
+        // change player door choice if needed
+        System.out.println("The player changed doors: " + player.getChangeDoorChoice());
+        if (player.getChangeDoorChoice())
+        {
+            player.setDoorChoice(doors.changeDoorChoice(player.getDoorChoice()));
         }
-        // If a goat door is chosen, open the other goat door
+        System.out.println("Your door is now door: " + player.getDoorChoice());
+
+        // give the final result
+        System.out.println("...");
+        System.out.println("The car is behind door: " + doors.getCarDoor());
+        // did the player win or lose
+        if (player.decideWinOrLose(player.getDoorChoice(), doors.getCarDoor()))
+        {
+            System.out.println("You Won!!!");
+        }
         else
         {
-            for (int i = 0; i < 3; i++)
-            {
-                if (doors.get(i) != firstDoorChoice && doors.get(i) != carDoor)
-                {
-                    unchosenGoatDoor = doors.get(i);
-                }
-            }
-            firstRevealedDoor = unchosenGoatDoor;
+            System.out.println("You lost...");
         }
+
+
+
+
+        /*
         System.out.println("Door " + firstRevealedDoor + " reveals a goat behind it!");
         System.out.println();
         System.out.println("Would you like to change your door guess?");
@@ -128,7 +112,7 @@ public class MontyHall {
         }
 
 
-
+    */
 
     }
 }
