@@ -69,50 +69,22 @@ public class MontyHall {
             System.out.println("You lost...");
         }
 
-
-
-
-        /*
-        System.out.println("Door " + firstRevealedDoor + " reveals a goat behind it!");
         System.out.println();
-        System.out.println("Would you like to change your door guess?");
+
+        System.out.println("Would you like to see how different choices affect your chances of winning?");
         System.out.println("No = 0");
         System.out.println("Yes = 1");
         System.out.print("Your choice: ");
-        Scanner doorChangeInput = new Scanner(System.in);
-        int finalDoor = -1;
-        if (doorChangeInput.nextInt() == 1)
+        Scanner extraData = new Scanner(System.in);
+
+        if (extraData.nextInt() == 1)
         {
-            for (int i = 0; i < 3; i++)
-            {
-                if (doors.get(i) != firstDoorChoice && doors.get(i) != firstRevealedDoor)
-                {
-                    finalDoor = doors.get(i);
-                }
-            }
-            System.out.println("Your new door choice is door " + finalDoor);
+            System.out.printf("If you never change doors you will win roughly %.2f%% of the time.%n",DecisionData.neverChangeDoors());
+            System.out.printf("If you always change doors you will win roughly %.2f%% of the time.%n",DecisionData.alwaysChangeDoors());
         }
         else
         {
-            finalDoor = firstDoorChoice;
-            System.out.println("You stayed with door " + finalDoor);
+            System.out.println("Have a good day.");
         }
-
-        // final result
-        System.out.println("...");
-        System.out.println("The car is behind door: " + carDoor);
-        // did the player win or lose
-        if (carDoor == finalDoor)
-        {
-            System.out.println("You won!");
-        }
-        else
-        {
-            System.out.println("You lost!");
-        }
-
-
-    */
-
     }
 }
