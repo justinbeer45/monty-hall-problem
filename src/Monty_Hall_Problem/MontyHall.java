@@ -81,6 +81,8 @@ public class MontyHall {
         {
             System.out.printf("If you never change doors you will win roughly %.2f%% of the time.%n",DecisionData.neverChangeDoors());
             System.out.printf("If you always change doors you will win roughly %.2f%% of the time.%n",DecisionData.alwaysChangeDoors());
+            System.out.println();
+            System.out.println("Have a good day.");
         }
         else
         {
